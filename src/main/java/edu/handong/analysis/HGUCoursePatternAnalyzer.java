@@ -3,9 +3,10 @@ package edu.handong.analysis;
 import edu.handong.analysis.datamodel.Course;
 import edu.handong.analysis.datamodel.Student;
 
+
 public class HGUCoursePatternAnalyzer {
 	
-	String[] lines = {	"1999-1, JC Nam, Java Programming",
+	private String[] lines = {	"1999-1, JC Nam, Java Programming",
 						"1999-2, JC Nam, Programming Language Theory",
 						"1999-1, JC Nam, Data Structures",
 						"2001-1, JC Nam, Database Systems",
@@ -19,10 +20,10 @@ public class HGUCoursePatternAnalyzer {
 						"2019-1, SJ Kim, Algorithm Analysis",
 						};
 
-	int numOfStudents;
-	int numOfCourses;
-	Student[] students;
-	Course[] courses;
+	private int numOfStudents;
+	private int numOfCourses;
+	private Student[] students;
+	private Course[] courses;
 	
 	/**
 	 * This method runs our analysis logic to get the list of student and course names from lines.
@@ -56,9 +57,19 @@ public class HGUCoursePatternAnalyzer {
 	private Student[] initiateStudentArrayFromLines(String[] lines) {
 		
 		// TODO: implement this method
+		String[] temp = new String [lines.length];
+		Student[] return_result = new Student [lines.length];
 		
+		for (int i = 0; i < lines.length; i++) {
+			temp[i] = lines[i].split(",")[1];
+		}
 		
-		return null;
+		for (int i = 0; i < lines.length; i++) {
+			Student result = new Student(temp[i].trim());
+			return_result[i] = result;
+		}
+		
+		return return_result;
 	}
 
 	/**
@@ -70,8 +81,10 @@ public class HGUCoursePatternAnalyzer {
 	private boolean studentExist(Student[] students, Student student) {
 		
 		// TODO: implement this method
-
-		return false;
+		if (students.equals(student))
+			return true;
+		else
+			return false;
 	}
 	
 	/**
@@ -82,8 +95,18 @@ public class HGUCoursePatternAnalyzer {
 	private Course[] initiateCourseArrayFromLines(String[] lines) {
 		
 		// TODO: implement this method
+		String[] temp = new String [lines.length];
+		Course[] return_result = new Course [lines.length];
 		
-		return null;
+		for (int i = 0; i < lines.length; i++) {
+			temp[i] = lines[i].split(",")[2];
+		}
+		
+		for (int i = 0; i < temp.length; i++) {
+			Course result = new Course(temp[i].trim());
+			return_result[i] = result;
+		}
+		return return_result;
 	}
 
 	/**
@@ -95,8 +118,10 @@ public class HGUCoursePatternAnalyzer {
 	private boolean courseExist(Course[] courses, Course course) {
 		
 		// TODO: implement this method
-
-		return false;
+		if (courses.equals(course))
+			return true;
+		else
+			return false;
 	}
 
 }
