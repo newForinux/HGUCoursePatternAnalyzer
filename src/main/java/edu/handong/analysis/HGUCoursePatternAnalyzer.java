@@ -34,14 +34,37 @@ public class HGUCoursePatternAnalyzer {
 		numOfStudents = Integer.parseInt(args[0]);
 		numOfCourses = Integer.parseInt(args[1]);
 		
+		int[] namechecker = new int [numOfStudents];
 		int[] checker = new int[numOfCourses];
-		int i = 0;
 		
 		students = initiateStudentArrayFromLines(lines);
 		
 		System.out.println("Number of All Students: " + numOfStudents);
 		for(Student student: students) {
-			System.out.println(student.getName());
+			if (!studentExist(students, student)) {
+				switch (student.getName()) {
+				case "JC Nam" :
+					if (namechecker[0] == 0) {
+						System.out.println(student.getName());
+						namechecker[0] = 1;
+					}
+					break;
+					
+				case "SB Lim" :
+					if (namechecker[1] == 0) {
+						System.out.println(student.getName());
+						namechecker[1] = 1;
+					}
+					break;
+					
+				case "SJ Kim" :
+					if (namechecker[2] == 0) {
+						System.out.println(student.getName());
+						namechecker[2] = 1;
+					}
+					break;
+				}
+			}
 		}
 		
 		courses = initiateCourseArrayFromLines(lines);
@@ -128,10 +151,15 @@ public class HGUCoursePatternAnalyzer {
 	private boolean studentExist(Student[] students, Student student) {
 		
 		// TODO: implement this method
-		if (students.equals(student))
-			return true;
-		else
-			return false;
+		int index = 0;
+		while (!students[index].getName().equals(student.getName())) {
+			index++;
+		}
+		for (int i = 0; i < index; i++) {
+			if (students[i].getName().equals(student.getName()))
+				return true;
+		}
+		return false;
 	}
 	
 	/**
