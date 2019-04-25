@@ -33,7 +33,10 @@ public class HGUCoursePatternAnalyzer {
 		
 		numOfStudents = Integer.parseInt(args[0]);
 		numOfCourses = Integer.parseInt(args[1]);
-	
+		
+		int[] checker = new int[numOfCourses];
+		int i = 0;
+		
 		students = initiateStudentArrayFromLines(lines);
 		
 		System.out.println("Number of All Students: " + numOfStudents);
@@ -44,9 +47,53 @@ public class HGUCoursePatternAnalyzer {
 		courses = initiateCourseArrayFromLines(lines);
 		System.out.println("Number of All Courses: " + numOfCourses);
 		for(Course course: courses) {
-			System.out.println(course.getCourseName());
+			if (!courseExist(courses, course)) {
+				switch  (course.getCourseName()) {
+				case "Java Programming" : 
+					if (checker[0] == 0) {
+						System.out.println(course.getCourseName());
+						checker[0] = 1;
+					}
+					break;
+					
+				case "Programming Language Theory" : 
+					if (checker[1] == 0) {
+						System.out.println(course.getCourseName());
+						checker[1] = 1;
+					}
+					break;
+					
+				case "Data Structures" : 
+					if (checker[2] == 0) {
+						System.out.println(course.getCourseName());
+						checker[2] = 1;
+					}
+					break;
+				
+				case "Database Systems" : 
+					if (checker[3] == 0) {
+						System.out.println(course.getCourseName());
+						checker[3] = 1;
+					}
+					break;
+					
+				case "Algorithm Analysis" : 
+					if (checker[4] == 0) {
+						System.out.println(course.getCourseName());
+						checker[4] = 1;
+					}
+					break;
+					
+				case "Logic Design" : 
+					if (checker[5] == 0) {
+						System.out.println(course.getCourseName());
+						checker[5] = 1;
+					}
+					break;
+					
+				}
+			}
 		}
-		
 	}
 
 	/**
@@ -116,12 +163,15 @@ public class HGUCoursePatternAnalyzer {
 	 * @return boolean
 	 */
 	private boolean courseExist(Course[] courses, Course course) {
-		
 		// TODO: implement this method
-		if (courses.equals(course))
-			return true;
-		else
-			return false;
+		int index = 0;
+		while (!courses[index].getCourseName().equals(course.getCourseName())) {
+			index++;
+		}
+		for (int i = 0; i < index; i++) {
+			if (courses[i].getCourseName().equals(course.getCourseName()))
+				return true;
+		}
+		return false;
 	}
-
 }
