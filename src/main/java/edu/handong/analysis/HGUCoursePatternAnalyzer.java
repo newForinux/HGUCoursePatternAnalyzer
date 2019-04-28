@@ -34,88 +34,22 @@ public class HGUCoursePatternAnalyzer {
 		numOfStudents = Integer.parseInt(args[0]);
 		numOfCourses = Integer.parseInt(args[1]);
 		
-		int[] namechecker = new int [numOfStudents];
+		//int[] namechecker = new int [numOfStudents];
 		int[] checker = new int[numOfCourses];
 		
 		students = initiateStudentArrayFromLines(lines);
 		
 		System.out.println("Number of All Students: " + numOfStudents);
 		for(Student student: students) {
-			if (!studentExist(students, student)) {
-				switch (student.getName()) {
-				case "JC Nam" :
-					if (namechecker[0] == 0) {
-						System.out.println(student.getName());
-						namechecker[0] = 1;
-					}
-					break;
-					
-				case "SB Lim" :
-					if (namechecker[1] == 0) {
-						System.out.println(student.getName());
-						namechecker[1] = 1;
-					}
-					break;
-					
-				case "SJ Kim" :
-					if (namechecker[2] == 0) {
-						System.out.println(student.getName());
-						namechecker[2] = 1;
-					}
-					break;
-				}
-			}
+			if (student != null)
+				System.out.println (student.getName());
 		}
 		
 		courses = initiateCourseArrayFromLines(lines);
 		System.out.println("Number of All Courses: " + numOfCourses);
 		for(Course course: courses) {
-			if (!courseExist(courses, course)) {
-				switch  (course.getCourseName()) {
-				case "Java Programming" : 
-					if (checker[0] == 0) {
-						System.out.println(course.getCourseName());
-						checker[0] = 1;
-					}
-					break;
-					
-				case "Programming Language Theory" : 
-					if (checker[1] == 0) {
-						System.out.println(course.getCourseName());
-						checker[1] = 1;
-					}
-					break;
-					
-				case "Data Structures" : 
-					if (checker[2] == 0) {
-						System.out.println(course.getCourseName());
-						checker[2] = 1;
-					}
-					break;
-				
-				case "Database Systems" : 
-					if (checker[3] == 0) {
-						System.out.println(course.getCourseName());
-						checker[3] = 1;
-					}
-					break;
-					
-				case "Algorithm Analysis" : 
-					if (checker[4] == 0) {
-						System.out.println(course.getCourseName());
-						checker[4] = 1;
-					}
-					break;
-					
-				case "Logic Design" : 
-					if (checker[5] == 0) {
-						System.out.println(course.getCourseName());
-						checker[5] = 1;
-					}
-					break;
-					
-				}
-			}
+			if (course != null)
+				System.out.println (course.getCourseName());
 		}
 	}
 
@@ -129,6 +63,7 @@ public class HGUCoursePatternAnalyzer {
 		// TODO: implement this method
 		String[] temp = new String [lines.length];
 		Student[] return_result = new Student [lines.length];
+		int index = 0;
 		
 		for (int i = 0; i < lines.length; i++) {
 			temp[i] = lines[i].split(",")[1];
@@ -136,7 +71,10 @@ public class HGUCoursePatternAnalyzer {
 		
 		for (int i = 0; i < lines.length; i++) {
 			Student result = new Student(temp[i].trim());
-			return_result[i] = result;
+			if (!studentExist(return_result, result)) {
+				return_result[index] = result;
+				index++;
+			}
 		}
 		
 		return return_result;
@@ -151,11 +89,7 @@ public class HGUCoursePatternAnalyzer {
 	private boolean studentExist(Student[] students, Student student) {
 		
 		// TODO: implement this method
-		int index = 0;
-		while (!students[index].getName().equals(student.getName())) {
-			index++;
-		}
-		for (int i = 0; i < index; i++) {
+		for (int i = 0; students[i] != null; i++) {
 			if (students[i].getName().equals(student.getName()))
 				return true;
 		}
@@ -172,6 +106,7 @@ public class HGUCoursePatternAnalyzer {
 		// TODO: implement this method
 		String[] temp = new String [lines.length];
 		Course[] return_result = new Course [lines.length];
+		int index = 0;
 		
 		for (int i = 0; i < lines.length; i++) {
 			temp[i] = lines[i].split(",")[2];
@@ -179,7 +114,10 @@ public class HGUCoursePatternAnalyzer {
 		
 		for (int i = 0; i < temp.length; i++) {
 			Course result = new Course(temp[i].trim());
-			return_result[i] = result;
+			if (!courseExist(return_result, result)) {
+				return_result[index] = result;
+				index++;
+			}
 		}
 		return return_result;
 	}
@@ -192,11 +130,7 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private boolean courseExist(Course[] courses, Course course) {
 		// TODO: implement this method
-		int index = 0;
-		while (!courses[index].getCourseName().equals(course.getCourseName())) {
-			index++;
-		}
-		for (int i = 0; i < index; i++) {
+		for (int i = 0; courses[i] != null; i++) {
 			if (courses[i].getCourseName().equals(course.getCourseName()))
 				return true;
 		}
