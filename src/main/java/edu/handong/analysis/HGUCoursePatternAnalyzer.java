@@ -34,9 +34,6 @@ public class HGUCoursePatternAnalyzer {
 		numOfStudents = Integer.parseInt(args[0]);
 		numOfCourses = Integer.parseInt(args[1]);
 		
-		//int[] namechecker = new int [numOfStudents];
-		int[] checker = new int[numOfCourses];
-		
 		students = initiateStudentArrayFromLines(lines);
 		
 		System.out.println("Number of All Students: " + numOfStudents);
