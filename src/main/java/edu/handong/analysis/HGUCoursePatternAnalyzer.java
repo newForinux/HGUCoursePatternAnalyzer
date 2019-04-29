@@ -83,6 +83,7 @@ public class HGUCoursePatternAnalyzer {
 	 * @param student
 	 * @return boolean
 	 */
+	
 	private boolean studentExist(Student[] students, Student student) {
 		
 		// TODO: implement this method
