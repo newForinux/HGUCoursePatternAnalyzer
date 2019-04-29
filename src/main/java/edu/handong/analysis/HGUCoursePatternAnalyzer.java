@@ -2,7 +2,6 @@ package edu.handong.analysis;
 
 import edu.handong.analysis.datamodel.*;
 
-
 public class HGUCoursePatternAnalyzer {
 	
 	private String[] lines = {	"1999-1, JC Nam, Java Programming",
@@ -23,7 +22,6 @@ public class HGUCoursePatternAnalyzer {
 	private int numOfCourses;
 	private Student[] students;
 	private Course[] courses;
-	
 	/**
 	 * This method runs our analysis logic to get the list of student and course names from lines.
 	 * @param args
