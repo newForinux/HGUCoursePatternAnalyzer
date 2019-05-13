@@ -1,6 +1,7 @@
 package edu.handong.analysis;
 
 import edu.handong.analysis.datamodel.*;
+import java.util.*;
 
 public class HGUCoursePatternAnalyzer {
 	
@@ -20,8 +21,9 @@ public class HGUCoursePatternAnalyzer {
 
 	private int numOfStudents;
 	private int numOfCourses;
-	private Student[] students;
-	private Course[] courses;
+	private ArrayList<Student> students;
+	private ArrayList<Course> courses;
+	
 	/**
 	 * This method runs our analysis logic to get the list of student and course names from lines.
 	 * @param args
@@ -52,11 +54,12 @@ public class HGUCoursePatternAnalyzer {
 	 * @param lines
 	 * @return
 	 */
-	private Student[] initiateStudentArrayFromLines(String[] lines) {
+	private ArrayList<Student> initiateStudentArrayFromLines(String[] lines) {
 		
 		// TODO: implement this method
-		String[] temp = new String [lines.length];
+		String[] temp = new String[lines.length];
 		Student[] return_result = new Student [lines.length];
+		ArrayList<Student> result_array = new ArrayList<Student>();
 		int index = 0;
 		
 		for (int i = 0; i < lines.length; i++) {
@@ -68,10 +71,11 @@ public class HGUCoursePatternAnalyzer {
 			if (!studentExist(return_result, result)) {
 				return_result[index] = result;
 				index++;
+				result_array.add(result);
 			}
 		}
 		
-		return return_result;
+		return result_array;
 	}
 
 	/**
@@ -96,11 +100,12 @@ public class HGUCoursePatternAnalyzer {
 	 * @param lines
 	 * @return
 	 */
-	private Course[] initiateCourseArrayFromLines(String[] lines) {
+	private ArrayList<Course> initiateCourseArrayFromLines(String[] lines) {
 		
 		// TODO: implement this method
 		String[] temp = new String [lines.length];
 		Course[] return_result = new Course [lines.length];
+		ArrayList<Course> result_array = new ArrayList<Course>();
 		int index = 0;
 		
 		for (int i = 0; i < lines.length; i++) {
@@ -112,9 +117,10 @@ public class HGUCoursePatternAnalyzer {
 			if (!courseExist(return_result, result)) {
 				return_result[index] = result;
 				index++;
+				result_array.add(result);
 			}
 		}
-		return return_result;
+		return result_array;
 	}
 
 	/**
